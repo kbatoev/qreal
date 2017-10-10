@@ -173,6 +173,11 @@ QStringList trik::TrikQtsInterpreter::supportedRobotModelNames() const
 	return {"TwoDRobotModelForTrikV62RealRobotModel", "TwoDRobotModelForTrikV6RealRobotModel"};
 }
 
+QStringList trik::TrikQtsInterpreter::getQTSMethodsForLanguage() const
+{
+	return mScriptRunner.getQTSMethodsForLanguage();
+}
+
 void trik::TrikQtsInterpreter::scriptFinished(const QString &error, int scriptId)
 {
 	Q_UNUSED(scriptId);
