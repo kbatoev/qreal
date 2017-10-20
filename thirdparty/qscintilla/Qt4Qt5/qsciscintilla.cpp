@@ -551,8 +551,10 @@ QStringList QsciScintilla::apiContext(int pos, int &context_start,
 
     // A valid sequence always starts with a word and so should be expecting a
     // separator.
-    if (expecting != Separator)
-        words.clear();
+	//if (expecting != Separator)
+	//    words.clear();
+	if (words.count() == 1 && words.last().isEmpty())
+		words.clear();
 
     context_start = good_pos;
 
