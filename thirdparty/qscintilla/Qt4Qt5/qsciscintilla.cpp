@@ -333,7 +333,7 @@ void QsciScintilla::callTip()
     if (!found)
         return;
 
-    QStringList context = apiContext(pos, pos, ctPos);
+    QStringList context = apiContext(pos, pos, ctPos, false);
 
     if (context.isEmpty())
         return;
@@ -494,7 +494,7 @@ int QsciScintilla::adjustedCallTipPosition(int ctshift) const
 // empty if a start string has just been typed.  On return pos is at the start
 // of the context.
 QStringList QsciScintilla::apiContext(int pos, int &context_start,
-        int &last_word_start)
+        int &last_word_start, bool singleWord)
 {
     enum {
         Either,
@@ -533,6 +533,8 @@ QStringList QsciScintilla::apiContext(int pos, int &context_start,
             // Return the position of the start of the last word if required.
             if (last_word_start < 0)
                 last_word_start = pos;
+            if (singleWord)
+                break;
         }
 
         // Strip any preceding spaces (mainly around operators).
@@ -551,10 +553,11 @@ QStringList QsciScintilla::apiContext(int pos, int &context_start,
 
     // A valid sequence always starts with a word and so should be expecting a
     // separator.
-	if (expecting != Separator)
-		good_pos++;
-	if (words.count() == 1 && words.last().isEmpty())
-		words.clear();
+    if (expecting != Separator)
+        good_pos++;
+    // it is supposed that if the last element is empty string then words count is more than 1
+    if (words.count() == 1 && words.last().isEmpty())
+        words.clear();
 
     context_start = good_pos;
 
@@ -665,7 +668,7 @@ void QsciScintilla::startAutoCompletion(AutoCompletionSource acs,
 {
     int start, ignore;
     QStringList context = apiContext(SendScintilla(SCI_GETCURRENTPOS), start,
-            ignore);
+            ignore, true);
 
     if (context.isEmpty())
         return;
