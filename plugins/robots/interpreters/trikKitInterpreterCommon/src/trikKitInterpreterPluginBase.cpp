@@ -73,7 +73,7 @@ void TrikKitInterpreterPluginBase::initKitInterpreterPluginBase
 				, true
 				, 8
 				, new QsciLexerCPP()
-				, mQtsInterpreter.data()->getQTSMethodsForLanguage()
+				, mQtsInterpreter.data()->knownMethodNames()
 	};
 	text::Languages::registerLanguage(javascriptWithKeyWords);
 }

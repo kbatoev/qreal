@@ -170,8 +170,7 @@ QString TrikQtsGeneratorPluginBase::defaultFilePath(const QString &projectName) 
 
 text::LanguageInfo TrikQtsGeneratorPluginBase::language() const
 {
-	qReal::text::LanguageInfo lang = qReal::text::Languages::pickByExtension("js");
-	return lang;
+	return qReal::text::Languages::pickByExtension("js");
 }
 
 QString TrikQtsGeneratorPluginBase::generatorName() const

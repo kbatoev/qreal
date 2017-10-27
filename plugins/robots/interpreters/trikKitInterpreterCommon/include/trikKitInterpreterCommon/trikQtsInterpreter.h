@@ -45,7 +45,7 @@ public:
 	void setCurrentDir(const QString &dir);
 	QStringList supportedRobotModelNames() const;
 
-	QStringList getQTSMethodsForLanguage() const;
+	QStringList knownMethodNames() const;
 
 signals:
 	void completed();
