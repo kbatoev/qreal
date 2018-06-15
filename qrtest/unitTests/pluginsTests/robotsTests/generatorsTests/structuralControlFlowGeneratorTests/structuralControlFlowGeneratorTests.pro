@@ -1,4 +1,4 @@
-# Copyright 2016 CyberTech Labs Ltd.
+# Copyright 2018 Konstantin Batoev.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,8 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-TEMPLATE = subdirs
+TARGET = structural-control-flow-generator-tests
 
-SUBDIRS = \
-	trikV62QtsGeneratorTests \
-	structuralControlFlowGeneratorTests \
+# for <QDomDocument>
+QT += xml
+
+include($$PWD/../../../../common.pri)
+
+include($$PWD/../../../../../../plugins/robots/generators/generatorBase/generatorBase.pri)
+
+links(robots-generator-base)
+
+HEADERS += \
+	$$PWD/structuralControlFlowGeneratorTest.h \
+
+SOURCES += \
+	$$PWD/structuralControlFlowGeneratorTest.cpp \
