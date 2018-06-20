@@ -16,6 +16,10 @@
 
 #include <gtest/gtest.h>
 
+namespace generatorBase {
+	class StructuralControlFlowGenerator;
+}
+
 namespace qrTest {
 namespace robotsTests {
 namespace structuralControlFlowGeneratorTests {
@@ -26,7 +30,7 @@ protected:
 	void SetUp() override;
 
 private:
-	int mField;
+	generatorBase::StructuralControlFlowGenerator *mStructuralControlFlowGenerator;
 };
 
 }
